@@ -1,28 +1,25 @@
-function addTask() {
-  const taskInput = document.getElementById('taskInput');
-  const taskText = taskInput.value.trim();
+async function getWeather() {
+  const city = document.getElementById("cityInput").value;
+  const apiKey = "YOUR_API_KEY_HERE"; // Get this from OpenWeatherMap
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-  if (taskText === "") {
-    alert("Please enter the task");
-    return;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("City not found");
+    }
+
+    const data = await response.json();
+
+    const weatherHtml = `
+      <h2>${data.name}, ${data.sys.country}</h2>
+      <p>🌡 Temperature: ${data.main.temp} °C</p>
+      <p>🌤 Condition: ${data.weather[0].description}</p>
+      <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Weather icon">
+    `;
+
+    document.getElementById("weatherResult").innerHTML = weatherHtml;
+  } catch (error) {
+    document.getElementById("weatherResult").innerHTML = `<p>${error.message}</p>`;
   }
-
-  const taskList = document.getElementById('taskList');
-  const li = document.createElement('li');
-
-  li.innerHTML = `
-    <span onclick="toggleComplete(this)">${taskText}</span>
-    <button onclick="deleteTask(this)">❌</button>
-  `;
-
-  taskList.appendChild(li);
-  taskInput.value = ""; // Clear input after adding
-}
-
-function toggleComplete(task) {
-  task.classList.toggle('completed');
-}
-
-function deleteTask(btn) {
-  btn.parentElement.remove();
 }
