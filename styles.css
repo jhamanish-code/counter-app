@@ -1,38 +1,29 @@
+*{ box-sizing: border-box; font-family:system-ui, sans-serif; }
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #6dd5fa, #2980b9);
-  color: white;
-  text-align: center;
+  background-color: #f2f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
-  padding: 40px;
 }
 
-.weather-container {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 400px;
-  margin: auto;
+.container{ 
+  background-color: #fff;
+  padding: 2rem 3rem;
+  border-radius:1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+  text-align : center;
+  width: 260px;
 }
+h1 {
+  margin-top: 0;
+}
+.value{ font-size: 3.5rem; margin : 1rem 0;}
 
-input {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  width: 70%;
-}
+.buttons { display: flex; gap:0.5rem; justify-content: center;}
+button:active{transform: scale(0.95);}
 
-button {
-  padding: 10px 15px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #f39c12;
-  color: white;
-  cursor: pointer;
-}
-
-.result {
-  margin-top: 20px;
-  font-size: 1.2rem;
-}
+#increment{background: green; color: white;}
+#decrement{ background: red; color: white;}
+#reset{background:grey; color: white;}
